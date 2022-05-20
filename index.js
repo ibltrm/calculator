@@ -104,6 +104,11 @@ function handleOperator(nextOperator) {
     const operator = calculator.operator;
     // `parseFloat` converts the string contents of `displayValue` to a floating-point number
     const inputValue = parseFloat(displayValue);
+
+    calculator.outputDisplay = calculator.outputDisplay.replace('=', '');
+
+    calculator.outputDisplay = calculator.outputDisplay + nextOperator;
+
     if (operator && calculator.waitingForSecondOperand) {
         calculator.operator = nextOperator;
         console.log(calculator);
@@ -183,6 +188,13 @@ updateOutput();
 
 function updateDisplay() {
     const display = document.querySelector('.display_result'); //select the "display_result" element
+
+    /*const displayValue = parseFloat(calculator.displayValue);
+    if (!Number.isFinite(displayValue)) {
+        alert('Calculation is out of the accepted range');
+        resetCalculator();
+        return;
+    }*/
     display.value = calculator.displayValue; // update the value of the element with the content of "displayValue"
 }
 
@@ -221,7 +233,8 @@ keys.addEventListener('click', event => { //addEventListener method make the doc
         default:
             // check if the key is an integer
             if (Number.isInteger(parseFloat(value))) {
-                inputDigit(value) + outputDigit(value);
+                inputDigit(value);
+                outputDigit(value);
             }
 
     }
