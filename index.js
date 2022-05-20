@@ -1,4 +1,4 @@
-//MODE 'SWITCHER
+//MODE SWITCHER
 const transition = () => {
     document.documentElement.classList.add('transition');
     window.setTimeout(() => {
@@ -30,7 +30,7 @@ const calculator = {
 };
 
 function outputDigit(digit) {
-   const outputDisplay = calculator.outputDisplay;
+    const outputDisplay = calculator.outputDisplay;
     const waitingForSecondOperand = calculator.waitingForSecondOperand;
     if (waitingForSecondOperand === true) {
         calculator.outputDisplay = digit;
@@ -43,6 +43,7 @@ function outputDigit(digit) {
 }
 
 function inputDigit(digit) {
+    //const { displayValue, waitingForSecondOperand } = calculator;
     const displayValue = calculator.displayValue;
     const waitingForSecondOperand = calculator.waitingForSecondOperand;
     // Overwrite `displayValue` if the current value is '0' otherwise append to it
@@ -74,8 +75,9 @@ function inputDecimal(dot) {
 }
 
 function handleOperator(nextOperator) {
-    const { firstOperand, outputDisplay, operator } = calculator
-
+    const firstOperand = calculator.firstOperand;
+    const outputDisplay = calculator.outputDisplay;
+    const operator = calculator.operator;
     const outputValue = parseFloat(outputDisplay);
     if (operator && calculator.waitingForSecondOperand) {
         calculator.operator = nextOperator;
@@ -97,8 +99,9 @@ function handleOperator(nextOperator) {
 
 
 function handleOperator(nextOperator) {
-    //Destructure the properties on the calculator object
-    const { firstOperand, displayValue, operator } = calculator
+    const firstOperand = calculator.firstOperand;
+    const displayValue = calculator.displayValue;
+    const operator = calculator.operator;
     // `parseFloat` converts the string contents of `displayValue` to a floating-point number
     const inputValue = parseFloat(displayValue);
     if (operator && calculator.waitingForSecondOperand) {
@@ -123,7 +126,8 @@ function handleOperator(nextOperator) {
 }
 
 function handleFn(fn) {
-    const { displayValue, waitingForSecondOperand } = calculator;
+    const displayValue = calculator.displayValue;
+    const waitingForSecondOperand = calculator.waitingForSecondOperand;
     const currentInput = parseFloat(displayValue);
     let result;
 
@@ -232,36 +236,3 @@ keys.addEventListener('click', event => { //addEventListener method make the doc
     updateOutput();
 
 });
-
-/*keys.addEventListener('click', (event) => {
-    // Access the clicked element
-    const { target } = event;
-    // Check if the clicked element is a button. If not, exit from the function
-    if (!target.matches('button')) {
-        return;
-    }
-
-    if (target.classList.contains('operator')) {
-        //console.log('operator', target.value);
-        handleOperator(target.value);
-        updateDisplay();
-        return;
-    }
-
-    if (target.classList.contains('decimal')) {
-        //console.log('decimal', target.value);
-        inputDecimal(target.value);
-        updateDisplay();
-        return;
-    }
-
-    if (target.classList.contains('all-clear')) {
-        //console.log('clear', target.value);
-        resetCalculator();
-        updateDisplay();
-        return;
-    }
-
-    inputDigit(target.value);
-    updateDisplay();
-});*/
