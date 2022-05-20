@@ -224,11 +224,12 @@ keys.addEventListener('click', event => { //addEventListener method make the doc
         default:
             // check if the key is an integer
             if (Number.isInteger(parseFloat(value))) {
-                inputDigit(value);
+                inputDigit(value) + outputDigit(value);
             }
 
     }
     updateDisplay();
+    updateOutput();
 
 });
 
