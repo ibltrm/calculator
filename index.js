@@ -183,13 +183,6 @@ updateOutput();
 
 function updateDisplay() {
     const display = document.querySelector('.display_result'); //select the "display_result" element
-    const displayValue = parseFloat(calculator.displayValue);
-
-    if (!Number.isFinite(displayValue)) {
-        alert('Calculation is out of the accepted range');
-        resetCalculator();
-        return;
-    }
     display.value = calculator.displayValue; // update the value of the element with the content of "displayValue"
 }
 
