@@ -30,7 +30,8 @@ const calculator = {
 };
 
 function outputDigit(digit) {
-    const { outputDisplay, waitingForSecondOperand } = calculator;
+   const outputDisplay = calculator.outputDisplay;
+    const waitingForSecondOperand = calculator.waitingForSecondOperand;
     if (waitingForSecondOperand === true) {
         calculator.outputDisplay = digit;
         calculator.waitingForSecondOperand = false;
@@ -42,7 +43,8 @@ function outputDigit(digit) {
 }
 
 function inputDigit(digit) {
-    const { displayValue, waitingForSecondOperand } = calculator;
+    const displayValue = calculator.displayValue;
+    const waitingForSecondOperand = calculator.waitingForSecondOperand;
     // Overwrite `displayValue` if the current value is '0' otherwise append to it
     if (waitingForSecondOperand === true) {
         calculator.displayValue = digit;
@@ -230,19 +232,6 @@ keys.addEventListener('click', event => { //addEventListener method make the doc
     updateOutput();
 
 });
-
-/*const displayOutput = document.querySelector('output');
-
-displayOutput.forEach(displayValue => {
-    displayValue.addEventListener('click', () => {
-
-    })
-});*/
-
-//const displayOutput = document.querySelector('output');
-//element.innerText += displayOutput;
-
-
 
 /*keys.addEventListener('click', (event) => {
     // Access the clicked element
