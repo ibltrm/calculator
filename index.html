@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Default Calculator</title>
+    <link href="style.css" rel="stylesheet">
+    <link href="images/calculator_icon.png" rel="icon">
+</head>
+
+<body>
+    <div class="toggle-container">
+        <input type="checkbox" id="switch" name="theme" /><label for="switch">Toggle</label>
+    </div>
+    <section>
+        <div class="container">
+
+            <!-- CALCULATOR DISPLAY -->
+            <div class="output_display">
+                <input type="text" class="output" value="" readonly />
+            </div>
+
+            <div class="calc_display">
+                <input type="text" class="display_result" value="" readonly />
+            </div>
+
+            <!-- CALCULATOR DISPLAY -->
+            <table class="calc_keys">
+                <!-- ROW 1 -->
+                <tr>
+                    <td><button type="button" id="ac" class="btn operator_horizontal all-clear" value="all-clear">AC</button></td>
+                    <td><button type="button" id="plusminus" class="btn operator_horizontal operator" value="+/-">+/-</button></td>
+                    <td><button type="button" id="percentage" class="btn operator_horizontal operator" value="%">&#37;</button></td>
+                    <td><button type="button" id="division" class="btn operator_vertical operator" value="/">&#247;</button></td>
+                </tr>
+                <!-- ROW 2 -->
+                <tr>
+                    <td><button type="button" id="seven" class="btn number" value="7">7</button></td>
+                    <td><button type="button" id="eight" class="btn number" value="8">8</button></td>
+                    <td><button type="button" id="nine" class="btn number" value="9">9</button></td>
+                    <td><button type="button" id="multiplication" class="btn operator_vertical operator" value="*">&times;</button></td>
+                </tr>
+                <!-- ROW 3 -->
+                <tr>
+                    <td><button type="button" id="four" class="btn number" value="4">4</button></td>
+                    <td><button type="button" id="five" class="btn number" value="5">5</button></td>
+                    <td><button type="button" id="six" class="btn number" value="6">6</button></td>
+                    <td><button type="button" id="subtraction" class="btn operator_vertical operator" value="-">-</button></td>
+                </tr>
+                <!-- ROW 4 -->
+                <tr>
+                    <td><button type="button" id="one" class="btn number" value="1">1</button></td>
+                    <td><button type="button" id="two" class="btn number" value="2">2</button></td>
+                    <td><button type="button" id="three" class="btn number" value="3">3</button></td>
+                    <td><button type="button" id="addition" class="btn operator_vertical operator" value="+">+</button>
+                    </td>
+                </tr>
+                <!-- ROW 5 -->
+                <tr>
+                    <td colspan="2"><button type="button" id="zero" class="btn number" value="0">0</button></td>
+                    <td><button type="button" id="point" class="btn decimal" value=".">&period;</button></td>
+                    <td><button type="button" id="equal" class="btn operator_vertical equal-sign operator" value="=">=</button></td>
+                </tr>
+            </table>
+        </div>
+    </section>
+
+
+    <script src="index.js">
+    </script>
+</body>
+
+
+</html>
