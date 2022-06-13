@@ -194,6 +194,11 @@ function resetCalculator() {
     calculator.waitingForSecondOperand = false;
     calculator.operator = null;
     console.log(calculator);
+
+    /**
+     * You have to update calculator UI here.
+     * Select the element and reset its values.
+    **/
 }
 
 function updateOutput() {
@@ -215,8 +220,18 @@ updateDisplay();
 // KEYBOARD INPUT
 const display = document.querySelector('.display_result');
 document.addEventListener('keydown', (event) => {
+   
     console.log(event);
-    if (event.key == "0") { display.value += event.key; }
+    if (event.key == "0") { 
+      /**
+       * Check if current display value is just '0'.
+       * If it's just '0', don't take any action.
+      **/
+      display.value += event.key; 
+   }
+   /**
+    * Make sure to also update element values.
+   **/
     if (event.key == "1") { display.value += event.key; }
     if (event.key == "2") { display.value += event.key; }
     if (event.key == "3") { display.value += event.key; }
@@ -226,7 +241,9 @@ document.addEventListener('keydown', (event) => {
     if (event.key == "7") { display.value += event.key; }
     if (event.key == "8") { display.value += event.key; }
     if (event.key == "9") { display.value += event.key; }
-    if (event.key == "+") {; }
+    if (event.key == "+") {
+      console.log({calculator});
+    }
     if (event.key == "-") {; }
     if (event.key == "/") {; }
     if (event.key == "*") {; }
@@ -234,7 +251,7 @@ document.addEventListener('keydown', (event) => {
     if (event.key == "+/-") {; }
     if (event.key == ".") {; }
     if (event.key == "Enter") {; }
-    if (event.key == "Delete") {; }
+    if (event.key == "Delete") {resetCalculator(); }
     if (event.key == "Backspace") { display.value = display.value.slice(0, -1); }
 
 })
