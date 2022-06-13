@@ -250,7 +250,7 @@ document.addEventListener('keydown', (event) => {
     if (event.key == "%") {; }
     if (event.key == "+/-") {; }
     if (event.key == ".") {; }
-    if (event.key == "Enter") {; }
+    if (event.key == "=") {; }
     if (event.key == "Delete") {resetCalculator(); }
     if (event.key == "Backspace") { display.value = display.value.slice(0, -1); }
 
