@@ -105,8 +105,25 @@ function handleOperator(nextOperator) {
     // `parseFloat` converts the string contents of `displayValue` to a floating-point number
     const inputValue = parseFloat(displayValue);
 
-    calculator.outputDisplay = calculator.outputDisplay.replace('=', '');
+    //If user clicked '=' button
+    if (nextOperator === '=') {
+        console.log('= was clicked');
 
+        //If currently only has single number, do nothing
+        if (!isNaN(Number(calculator.outputDisplay)))
+            return;
+        //Convert string to array
+        const stringToArray = calculator.outputDisplay.split('');
+        //Select last index value of string array
+        const lastIndexValue = stringToArray[stringToArray.length - 1];
+        //If last index value is not a number, do nothing
+        if (isNaN(Number(lastIndexValue)))
+            return;
+    }
+
+    //Remove '=' from calculator.outputDisplay
+    calculator.outputDisplay = calculator.outputDisplay.replace('=', '');
+    //Add clicked operator in calculator.outputDisplay
     calculator.outputDisplay = calculator.outputDisplay + nextOperator;
 
     if (operator && calculator.waitingForSecondOperand) {
@@ -200,11 +217,40 @@ function updateDisplay() {
 
 updateDisplay();
 
+// KEYBOARD INPUT
+const display = document.querySelector('.display_result');
+document.addEventListener('keydown', (event) => {
+    console.log(event);
+    if (event.key == "0") { display.value += event.key; }
+    if (event.key == "1") { display.value += event.key; }
+    if (event.key == "2") { display.value += event.key; }
+    if (event.key == "3") { display.value += event.key; }
+    if (event.key == "4") { display.value += event.key; }
+    if (event.key == "5") { display.value += event.key; }
+    if (event.key == "6") { display.value += event.key; }
+    if (event.key == "7") { display.value += event.key; }
+    if (event.key == "8") { display.value += event.key; }
+    if (event.key == "9") { display.value += event.key; }
+    if (event.key == "+") {; }
+    if (event.key == "-") {; }
+    if (event.key == "/") {; }
+    if (event.key == "*") {; }
+    if (event.key == "%") {; }
+    if (event.key == "+/-") {; }
+    if (event.key == ".") {; }
+    if (event.key == "Enter") {; }
+    if (event.key == "Delete") {; }
+    if (event.key == "Backspace") { display.value = display.value.slice(0, -1); }
+
+})
+
+
+
 const keys = document.querySelector('.calc_keys'); //to determine what type of key was clicked - whether digits (0-9), operators (+, −, ⨉, ÷, =), decimal point (.) and the reset key (AC) -
 
 keys.addEventListener('click', event => { //addEventListener method make the document clickable
-    const { target } = event;
-    const { value } = target;
+    const target = event.target;
+    const value = target.value;
     if (!target.matches('button')) { //check if the clicked element is a button
         return;
     }
@@ -242,3 +288,4 @@ keys.addEventListener('click', event => { //addEventListener method make the doc
     updateOutput();
 
 });
+
