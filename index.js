@@ -20,15 +20,11 @@ checkbox.addEventListener('change', function() {
 })
 
 //KEYBOARD COMMANDS BUTTON 
+
 let commandBtn = document.querySelector('.btn-commands');
 let content = document.querySelector('.note-content');
-
 commandBtn.addEventListener('click', () => {
-    if (content.style.display === 'none') {
-        content.style.display = 'block'
-    } else {
-        content.style.display = 'none';
-    }
+    content.classList.toggle("open");
 });
 
 //CALCULATOR
@@ -65,7 +61,7 @@ function inputDigit(digit) {
         calculator.displayValue = displayValue === '0' ? digit : displayValue + digit; // the question mark(?) is being used to check if the current value displayed on the calculator is zero. if so, calculator.displayValue is overwritten with whatever digit was clicked.
     }
 
-    // console.log(calculator);
+    console.log(calculator);
 }
 
 function inputDecimal(dot) {
@@ -171,7 +167,6 @@ function handleOperator(nextOperator) {
         // console.log(calculator);
 }
 
-
 function handleFn(fn) {
     const displayValue = calculator.displayValue;
     const waitingForSecondOperand = calculator.waitingForSecondOperand;
@@ -197,6 +192,8 @@ function handleFn(fn) {
         calculator.waitingForSecondOperand = false;
     }
 }
+
+
 
 
 function calculate(firstOperand, secondOperand, operator) {
@@ -264,9 +261,9 @@ document.addEventListener('keydown', event => {
         case '%':
             handleFn(value);
             break;
-        case '%':
-            handleFn(value);
-            break;
+            /*case '%':
+                handleFn(value);
+                break;*/
         case '.':
             inputDecimal(value);
             break;
