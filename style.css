@@ -148,6 +148,11 @@ section {
     background-color: var(--command-hover)
 }
 
+.note-content.open {
+    display: block;
+    width: 60%;
+}
+
 .note-content {
     background: var(--command-note);
     height: 20%;
@@ -381,13 +386,19 @@ section {
 
 @media screen and (min-width: 1000px) and (max-width: 1200px) and (orientation: landscape) {
     .command-container {
-        width: 25%;
+        width: 30%;
+    }
+    .note-content.open {
+        width: 80%;
     }
 }
 
 @media screen and (min-width: 1200px) and (max-width: 1300px) and (orientation: landscape) {
     .command-container {
         width: 28%;
+    }
+    .note-content.open {
+        width: 80%;
     }
 }
 
