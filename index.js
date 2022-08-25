@@ -34,6 +34,7 @@ const calculator = {
     firstOperand: null, //store the first operand of the math expressions
     operator: null, // store the operator for an expression
     waitingForSecondOperand: false, //check if both the first operand and the operator have been set. if true, the next numbers entered will create the second operand
+    plusMinusJustClicked: false,
 };
 
 function outputDigit(digit) {
@@ -170,27 +171,66 @@ function handleOperator(nextOperator) {
 function handleFn(fn) {
     const displayValue = calculator.displayValue;
     const waitingForSecondOperand = calculator.waitingForSecondOperand;
-    const currentInput = parseFloat(displayValue);
+    const currentInput = parseFloat(displayValue); // Number.
     let result;
 
     switch (fn) {
-        case '%':
+        case '%': // If case is '%'
             result = currentInput / 100;
+            calculator.displayValue = `${parseFloat(result.toFixed(7))}`;
+            calculator.outputDisplay = `${parseFloat(result.toFixed(7))}`;
             break;
         case '+/-':
-            result = currentInput * -1;
+            //result = currentInput * -1;
+            //## Below commented code will fix '+/-' result error ##//
+            //@@ Test the error and understand before adding below code @@//
+            /* calculator.operator = null;
+             if (Math.sign(result) < 0) {
+                 console.log('negative', result);
+                 calculator.displayValue = Math.abs(result) * -1;
+                 calculator.firstOperand = Math.abs(result) * -1;
+             } else {
+                 console.log('positive', result);
+                 calculator.displayValue = Math.abs(result);
+                 calculator.firstOperand = Math.abs(result);
+             }*/
+
+            //!! Think about what should be done here !!//
+            const newInput = currentInput * -1;
+            calculator.displayValue = newInput;
+
+
+            if (calculator.plusMinusJustClicked === false) { // If '+/-' conversion was not done for current value.
+                const outputDisplay = calculator.outputDisplay; //selecting outputDisplay values 
+                console.log('outputDisplay', outputDisplay)
+                const outputDisplayToArray = outputDisplay.split(''); //turn the values of outputDisplay into array
+                console.log('outputDisplayToArray', outputDisplayToArray);
+                const latestInputLength = currentInput.toString().length; //checking the length of the values from outputDisplay
+                console.log('latestInputLength', latestInputLength);
+                outputDisplayToArray.length = outputDisplayToArray.length - latestInputLength;
+                console.log('outputDisplayToArray', outputDisplayToArray) //subtract the lenght of the objects so only the - in added to the display (i think the problem is here)
+                outputDisplayToArray.push('-'); //push to add the negative sign to the array
+                console.log('outputDisplayToArray', outputDisplayToArray)
+                const backToString = outputDisplayToArray.join(''); //turn the array back to string
+                console.log('backToString', backToString)
+                calculator.outputDisplay = backToString + currentInput.toString();
+                console.log('calculator.outputDisplay', calculator.outputDisplay);
+            } else { // If '+/-' conversion was just done (user clicking again).
+               
+            }
+
             break;
         default:
             result = 0;
 
     }
 
-    calculator.displayValue = `${parseFloat(result.toFixed(7))}`;
-    calculator.outputDisplay = `${parseFloat(result.toFixed(7))}`;
+    // After switch function is done, whatever here will trigger next.
 
     if (waitingForSecondOperand) {
         calculator.waitingForSecondOperand = false;
     }
+
 }
 
 
@@ -224,6 +264,9 @@ function updateOutput() {
     const outDisplay = document.querySelector('.output');
     outDisplay.value = calculator.outputDisplay;
 }
+
+
+
 
 updateOutput();
 
@@ -271,7 +314,7 @@ document.addEventListener('keydown', event => {
             resetCalculator();
             break;
         default:
-            // check if the key is an integer
+            // check if the value is an integer
             if (Number.isInteger(parseFloat(value))) {
                 inputDigit(value);
                 outputDigit(value);
@@ -304,9 +347,9 @@ keys.addEventListener('click', event => { //addEventListener method make the doc
         case '%':
             handleFn(value);
             break;
-        case '%':
-            handleFn(value);
-            break;
+            /*case '%':
+                handleFn(value);
+                break;*/
         case '.':
             inputDecimal(value);
             break;
@@ -319,8 +362,14 @@ keys.addEventListener('click', event => { //addEventListener method make the doc
                 inputDigit(value);
                 outputDigit(value);
             }
-
     }
+
+    if (value === '+/-') {
+        calculator.plusMinusJustClicked = true;
+    } else {
+        calculator.plusMinusJustClicked = false;
+    }
+
     updateDisplay();
     updateOutput();
 
