@@ -251,7 +251,7 @@ section {
     background-color: var(--horizontal-operator);
 }
 
-.btn.btn.operator_horizontal:hover {
+.btn.btn.operator_horizontal:hover:not([disabled]) {
     background-color: var(--horiz-hover);
 }
 
@@ -420,4 +420,8 @@ section {
         margin-left: auto;
         margin-right: auto;
     }
+}
+
+#plusminus[disabled] {
+   opacity: 0.5;
 }
