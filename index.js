@@ -216,7 +216,14 @@ function handleFn(fn) {
                 calculator.outputDisplay = backToString + currentInput.toString();
                 console.log('calculator.outputDisplay', calculator.outputDisplay);
             } else { // If '+/-' conversion was just done (user clicking again).
-               
+                calculator.plusMinusJustClicked === true;
+                const outputDisplay = calculator.outputDisplay;
+                const outputDisplayToArray = outputDisplay.split('');
+                const latestInputLength = currentInput.toString().length;
+                outputDisplayToArray.length = outputDisplayToArray.length - latestInputLength;
+                //outputDisplayToArray.(''); I wanted to find a method that could do what I wanted and place it here
+                const backToString = outputDisplayToArray.join('');
+                calculator.outputDisplay = backToString + currentInput.toString();
             }
 
             break;
